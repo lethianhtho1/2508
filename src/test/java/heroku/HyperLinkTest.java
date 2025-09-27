@@ -1,20 +1,22 @@
 package heroku;
 
-import org.junit.Assert;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class HyperLinkTest {
+
     @Test
-    public void clickHyperLinkStatus200(){
+    void verifyNavigateHyperLinksSuccessfully() {
         WebDriver driver = new ChromeDriver();
         driver.get("https://the-internet.herokuapp.com/status_codes");
+
         String href = driver.findElement(By.linkText("200")).getAttribute("href");
         driver.findElement(By.linkText("200")).click();
         Assert.assertEquals(driver.getCurrentUrl(), href);
-        driver.findElement(By.linkText("here")).click();
+        driver.navigate().back();
 
         href = driver.findElement(By.linkText("301")).getAttribute("href");
         driver.findElement(By.linkText("301")).click();
@@ -31,5 +33,6 @@ public class HyperLinkTest {
         Assert.assertEquals(driver.getCurrentUrl(), href);
         driver.navigate().back();
 
+        driver.quit();
     }
 }

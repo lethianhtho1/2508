@@ -1,16 +1,14 @@
 package heroku;
 
-import org.junit.Assert;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-import static org.junit.Assert.assertTrue;
-
-public class NestedFramesTest {//verifyNestedFrames
+public class NestedFrameTest {
     @Test
-    public void verifyNestedFrames(){
+    void verifyNestedFrameContent(){
         WebDriver driver = new ChromeDriver();
         driver.get("https://the-internet.herokuapp.com/nested_frames");
         driver.switchTo().frame("frame-top");
@@ -23,6 +21,7 @@ public class NestedFramesTest {//verifyNestedFrames
         content = driver.findElement(By.id("content")).getText();
         Assert.assertTrue(content.contains("MIDDLE"));
 
+
         driver.switchTo().parentFrame(); //frame-top
         driver.switchTo().frame("frame-right");
         content = driver.findElement(By.tagName("body")).getText();
@@ -34,6 +33,5 @@ public class NestedFramesTest {//verifyNestedFrames
         Assert.assertTrue(content.contains("BOTTOM"));
 
         driver.quit();
-
     }
 }

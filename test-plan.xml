@@ -1,0 +1,9 @@
+<suite name="heroku app">
+    <test name="regression">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="heroku.HoverTest"/>
+        </classes>
+    </test>
+
+</suite>

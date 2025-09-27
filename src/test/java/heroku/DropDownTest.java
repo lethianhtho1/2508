@@ -1,31 +1,29 @@
 package heroku;
 
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class DropDownTest {
+
     @Test
-    public void verifySelectOptionSuccessfully() {
+    void verifySelectOptionSuccessfully(){
         WebDriver driver = new ChromeDriver();
         driver.get("https://the-internet.herokuapp.com/dropdown");
+
         Select dropdown = new Select(driver.findElement(By.id("dropdown")));
-        // dropdown.selectByValue("1"); -> it dùng
-        // dropdown.selectByVisibleText("Option 1");
-        dropdown.selectByIndex(1);
-        Assert.assertTrue(driver.findElement(By.xpath("//option[@value='1']")).isSelected());
-        //Assert.assertTrue(driver.findElement(By.xpath("//option[.='Option 1']")).isSelected());
+        dropdown.selectByVisibleText("Option 1");
+
+        Assert.assertTrue(driver.findElement(By.xpath("//option[.='Option 1']")).isSelected());
 
         driver.quit();
     }
 
-
-
     @Test
-    public void verifySelectMultipleOptionsSuccessfully(){
+    void verifySelectMultipleOptionsSuccessfully(){
         WebDriver driver = new ChromeDriver();
         driver.get("https://output.jsbin.com/osebed/2");
 
@@ -54,8 +52,5 @@ public class DropDownTest {
         Assert.assertFalse(driver.findElement(By.xpath("//option[.='Grape']")).isSelected());
 
         driver.quit();
-
     }
-
-
 }
